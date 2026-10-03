@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>경상국립대학교 물리학과 통계물리2 교과목 보조자료</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧲</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Public+Sans:wght@400;600&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef1f4;
+    --ink: #18233a;
+    --muted: #55607a;
+    --rule: #c9d0db;
+    --spin-up: #2f5bd3;
+    --spin-down: #dfe4ec;
+    --slow: #2f5bd3;
+    --fast: #d6453d;
+    --shell: #2e9d55;
+    --accent: #b5770f;
+    --serif: "STIX Two Text", "Noto Serif KR", "Cambria", "Times New Roman", serif;
+    --sans: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #141c2b;
+      --ink: #e4e9f2;
+      --muted: #9aa5bb;
+      --rule: #2e3a52;
+      --spin-up: #6f93f2;
+      --spin-down: #1d273a;
+      --slow: #6f93f2;
+      --fast: #ff6b5e;
+      --shell: #7ddc8a;
+      --accent: #e3a43a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141c2b;
+    --ink: #e4e9f2;
+    --muted: #9aa5bb;
+    --rule: #2e3a52;
+    --spin-up: #6f93f2;
+    --spin-down: #1d273a;
+      --slow: #6f93f2;
+      --fast: #ff6b5e;
+      --shell: #7ddc8a;
+    --accent: #e3a43a;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Hero */
+  .hero { padding: 4.5rem 0 3rem; }
+  .hero-text { max-width: 48rem; }
+  .hero-text p { max-width: 40rem; }
+  .hero h1 {
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    word-break: keep-all;
+    margin: 0 0 1.25rem;
+  }
+  .hero-text p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.2rem;
+  }
+  .gas-figure { margin: 3rem 0 0; }
+  .panels {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+  .hero-text .credit { margin-top: 1.25rem; font-size: 0.95rem; }
+  .panel canvas {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+  }
+  .panel canvas.rotatable { cursor: grab; touch-action: pan-y; }
+  .panel canvas.rotatable:active { cursor: grabbing; }
+  .panel p {
+    margin: 0.75rem 0 0;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .panel p .ko { display: block; margin-top: 0.4rem; font-size: 0.92rem; }
+  .c-slow { color: var(--slow); }
+  .c-fast { color: var(--fast); }
+  .c-shell { color: var(--shell); }
+  .gas-figure figcaption {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.6rem;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    max-width: 30rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+  .controls label { display: flex; align-items: center; gap: 0.6rem; flex: 1; }
+  .controls label > span { font-family: var(--serif); font-size: 1.1rem; }
+  .controls input[type="range"] { flex: 1; accent-color: var(--slow); min-width: 0; }
+  .controls output { font-variant-numeric: tabular-nums; min-width: 3.6rem; }
+  .controls button {
+    font: inherit;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.25rem 0.7rem;
+    cursor: pointer;
+  }
+  .controls button:hover { border-color: var(--ink); }
+
+  /* Demo list */
+  .part { padding: 2.25rem 0 1rem; border-top: 1px solid var(--rule); }
+  .part h2 {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+  }
+  .demos { list-style: none; margin: 0; padding: 0; }
+  .demo {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr minmax(14rem, 22rem);
+    gap: 0 1.5rem;
+    padding: 1.4rem 0;
+    align-items: baseline;
+  }
+  .demo + .demo { border-top: 1px dashed var(--rule); }
+  .num {
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-variant-numeric: oldstyle-nums;
+  }
+  .demo h3 {
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 0.35rem;
+  }
+  .demo h3 a { text-decoration: none; }
+  .demo h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .demo p { margin: 0 0 0.6rem; max-width: 36rem; }
+  .links { font-family: var(--sans); font-size: 0.9rem; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  .links a { text-underline-offset: 3px; }
+  .links a.primary { font-weight: 600; color: var(--spin-up); }
+  .eq {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: right;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .eq i { font-style: italic; }
+  .eq sup, .eq sub { font-size: 0.68em; line-height: 0; }
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.95em;
+  }
+  .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 0.2em; }
+  .frac > span:last-child { padding: 0 0.2em; }
+
+  .ko { color: var(--muted); word-break: keep-all; }
+  h3 .ko { display: block; font-size: 1.05rem; font-weight: 400; margin-top: 0.15rem; }
+  .course { margin: 0 0 1.25rem; font-family: var(--sans); font-size: 0.95rem; color: var(--ink); }
+  .course span { display: block; color: var(--muted); }
+  .credit { margin-top: 1.25rem; font-family: var(--sans); font-size: 0.95rem; color: var(--muted); }
+  .credit span { display: block; }
+  .refs ul { margin: 0.5rem 0 1.5rem; padding-left: 1.2rem; max-width: 46rem; }
+  .refs li { margin-bottom: 0.5rem; }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0 3rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 52rem) {
+    .hero { padding-top: 3rem; }
+    .panels { grid-template-columns: 1fr; max-width: 28rem; }
+    .demo { grid-template-columns: 2rem 1fr; }
+    .eq { grid-column: 2; text-align: left; margin-top: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-text">
+      <h1 lang="ko">경상국립대학교 물리학과<br>통계물리2 교과목 보조자료</h1>
+      <p>Nine browser simulations that accompany the course, from the Boltzmann factor to the Ising model. Open any demo to change the parameters and watch the physics respond.</p>
+      <p class="ko" lang="ko" style="margin-top:0.6rem">볼츠만 인자에서 이징 모형까지, 강의와 함께 보는 아홉 가지 브라우저 시뮬레이션입니다. 데모를 열어 매개변수를 바꾸며 물리 현상이 어떻게 달라지는지 확인해 보세요.</p>
+      <p class="credit">Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.<span lang="ko">이상훈 교수의 강의 노트를 바탕으로 Claude Opus 5.5가 만들었습니다.</span></p>
+    </div>
+    <figure class="gas-figure">
+      <div class="panels">
+        <div class="panel">
+          <canvas id="boxView" class="rotatable" aria-label="Argon atoms moving in a 3D box, colored by speed"></canvas>
+          <p>The atoms in their 3D box. Color runs from <span class="c-slow">slow</span> to <span class="c-fast">fast</span>. Drag either view to rotate both.<span class="ko" lang="ko">3차원 상자 속 원자들. 색은 <span class="c-slow">느린</span> 원자에서 <span class="c-fast">빠른</span> 원자로 변합니다. 어느 쪽 그림이든 끌면 두 그림이 함께 회전합니다.</span></p>
+        </div>
+        <div class="panel">
+          <canvas id="velView" class="rotatable" aria-label="The same atoms plotted in 3D velocity space with a shell at the most probable speed"></canvas>
+          <p>Velocity space in 3D. Points are densest at the origin, yet the most likely speed is the <span class="c-shell">green shell</span> at <i>v</i><sub>max</sub>: its area 4π<i>v</i><sup>2</sup> holds more velocity vectors.<span class="ko" lang="ko">3차원 속도 공간. 점은 원점에서 가장 빽빽하지만, 가장 확률이 높은 속력은 <i>v</i><sub>max</sub>의 <span class="c-shell">초록 껍질</span>입니다. 넓이 4π<i>v</i><sup>2</sup>에 더 많은 속도 벡터가 담기기 때문입니다.</span></p>
+        </div>
+        <div class="panel">
+          <canvas id="histView" aria-label="Histogram of atomic speeds compared with the Maxwell speed distribution"></canvas>
+          <p>Histogram of speeds against <i>D</i>(<i>v</i>) at the set temperature.<span class="ko" lang="ko">설정한 온도에서의 속력 히스토그램과 맥스웰 분포 <i>D</i>(<i>v</i>)의 비교.</span></p>
+        </div>
+      </div>
+      <div class="controls">
+        <label>
+          <span><i>T</i></span>
+          <input id="temp" type="range" min="100" max="1000" step="10" value="300">
+          <output id="tempOut" for="temp">300 K</output>
+        </label>
+        <button id="toggle" type="button">Pause</button>
+      </div>
+      <figcaption>900 argon atoms from demo 2, <a href="https://lshlj82.github.io/Boltzmann-ideal-gas/">Boltzmann statistics of an ideal gas</a>. <span lang="ko">데모 2 「이상 기체의 볼츠만 통계」의 아르곤 원자 900개.</span></figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="part" aria-labelledby="part-classical">
+      <h2 id="part-classical">Classical statistics <span class="ko" lang="ko">고전 통계</span></h2>
+      <ol class="demos" start="1">
+        <li class="demo">
+          <span class="num">1</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/Boltzmann-statistics-basics/">Boltzmann statistics</a><span class="ko" lang="ko">볼츠만 통계</span></h3>
+            <p>How the Boltzmann factor and the partition function set the probability of each state of a system in contact with a reservoir.</p>
+            <p class="ko" lang="ko">저장고와 접촉한 계에서 볼츠만 인자와 분배 함수가 각 상태의 확률을 어떻게 정하는지 살펴봅니다.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/Boltzmann-statistics-basics/">Open demo</a>
+              <a href="https://github.com/lshlj82/Boltzmann-statistics-basics">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="P of s equals e to the minus E of s over k B T, divided by Z">
+            <i>P</i>(<i>s</i>) = <span class="frac"><span><i>e</i><sup>−<i>E</i>(<i>s</i>)/<i>k</i><sub>B</sub><i>T</i></sup></span><span><i>Z</i></span></span>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">2</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/Boltzmann-ideal-gas/">Boltzmann statistics of an ideal gas</a><span class="ko" lang="ko">이상 기체의 볼츠만 통계</span></h3>
+            <p>The Maxwell speed distribution and how it shifts with temperature and molecular mass.</p>
+            <p class="ko" lang="ko">맥스웰 속력 분포가 온도와 분자 질량에 따라 어떻게 달라지는지 살펴봅니다.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/Boltzmann-ideal-gas/">Open demo</a>
+              <a href="https://github.com/lshlj82/Boltzmann-ideal-gas">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="D of v is proportional to v squared times e to the minus m v squared over 2 k B T">
+            <i>D</i>(<i>v</i>) ∝ <i>v</i><sup>2</sup> <i>e</i><sup>−<i>mv</i><sup>2</sup>/2<i>k</i><sub>B</sub><i>T</i></sup>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">3</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/Gibbs-statistics/">Gibbs statistics</a><span class="ko" lang="ko">깁스 통계</span></h3>
+            <p>Systems that exchange particles as well as energy: the Gibbs factor, the grand partition function and the chemical potential.</p>
+            <p class="ko" lang="ko">에너지뿐 아니라 입자도 주고받는 계: 깁스 인자, 대분배 함수, 화학 퍼텐셜.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/Gibbs-statistics/">Open demo</a>
+              <a href="https://github.com/lshlj82/Gibbs-statistics">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="P of s equals e to the minus E minus mu N over k B T, divided by script Z">
+            <i>P</i>(<i>s</i>) = <span class="frac"><span><i>e</i><sup>−[<i>E</i>(<i>s</i>) − <i>μN</i>(<i>s</i>)]/<i>k</i><sub>B</sub><i>T</i></sup></span><span>𝒵</span></span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="part" aria-labelledby="part-quantum">
+      <h2 id="part-quantum">Quantum statistics <span class="ko" lang="ko">양자 통계</span></h2>
+      <ol class="demos" start="4">
+        <li class="demo">
+          <span class="num">4</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/boson-vs-fermion/">Boson vs Fermion</a><span class="ko" lang="ko">보손 대 페르미온</span></h3>
+            <p>Bose–Einstein, Fermi–Dirac and Boltzmann occupancies side by side, and where the three agree.</p>
+            <p class="ko" lang="ko">보스–아인슈타인, 페르미–디랙, 볼츠만 점유수를 나란히 비교하고 셋이 일치하는 영역을 확인합니다.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/boson-vs-fermion/">Open demo</a>
+              <a href="https://github.com/lshlj82/boson-vs-fermion">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="n bar equals one over e to the epsilon minus mu over k B T, plus or minus one">
+            <i>n̄</i> = <span class="frac"><span>1</span><span><i>e</i><sup>(<i>ε</i>−<i>μ</i>)/<i>k</i><sub>B</sub><i>T</i></sup> ± 1</span></span>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">5</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/degenerate-fermi-gas/">Degenerate Fermi gas</a><span class="ko" lang="ko">축퇴 페르미 기체</span></h3>
+            <p>Electrons filling states up to the Fermi energy, and how the distribution smears out as the temperature rises.</p>
+            <p class="ko" lang="ko">페르미 에너지까지 상태를 채우는 전자들과, 온도가 올라가며 분포가 퍼지는 모습.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/degenerate-fermi-gas/">Open demo</a>
+              <a href="https://github.com/lshlj82/degenerate-fermi-gas">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="epsilon F equals h squared over 8m times 3N over pi V to the two thirds">
+            <i>ε</i><sub>F</sub> = <span class="frac"><span><i>h</i><sup>2</sup></span><span>8<i>m</i></span></span>
+            <span style="font-size:1.3em">(</span><span class="frac"><span>3<i>N</i></span><span><i>πV</i></span></span><span style="font-size:1.3em">)</span><sup>2/3</sup>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">6</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/photon-statistics/">Photon statistics</a><span class="ko" lang="ko">광자 통계</span></h3>
+            <p>Blackbody radiation: the Planck spectrum, Wien's displacement law and the Stefan–Boltzmann law.</p>
+            <p class="ko" lang="ko">흑체 복사: 플랑크 스펙트럼, 빈의 변위 법칙, 슈테판–볼츠만 법칙.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/photon-statistics/">Open demo</a>
+              <a href="https://github.com/lshlj82/photon-statistics">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="u of epsilon is proportional to epsilon cubed over e to the epsilon over k B T minus one">
+            <i>u</i>(<i>ε</i>) ∝ <span class="frac"><span><i>ε</i><sup>3</sup></span><span><i>e</i><sup><i>ε</i>/<i>k</i><sub>B</sub><i>T</i></sup> − 1</span></span>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">7</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/Debye-theory/">Debye theory of solids</a><span class="ko" lang="ko">고체의 디바이 이론</span></h3>
+            <p>Phonons in a crystal and the heat capacity of a solid, from the <i>T</i><sup>3</sup> law at low temperature to the classical limit.</p>
+            <p class="ko" lang="ko">결정 속 포논과 고체의 열용량: 저온의 <i>T</i><sup>3</sup> 법칙에서 고전적 극한까지.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/Debye-theory/">Open demo</a>
+              <a href="https://github.com/lshlj82/Debye-theory">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="C V is proportional to T cubed for T much less than T D">
+            <i>C</i><sub><i>V</i></sub> ∝ <i>T</i><sup>3</sup> &nbsp;(<i>T</i> ≪ <i>T</i><sub>D</sub>)
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">8</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/BEC/">Bose–Einstein condensation</a><span class="ko" lang="ko">보스–아인슈타인 응축</span></h3>
+            <p>Bosons crowding into the ground state below a critical temperature.</p>
+            <p class="ko" lang="ko">임계 온도 아래에서 보손들이 바닥 상태로 몰려드는 현상.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/BEC/">Open demo</a>
+              <a href="https://github.com/lshlj82/BEC">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="N 0 over N equals one minus T over T c to the three halves">
+            <span class="frac"><span><i>N</i><sub>0</sub></span><span><i>N</i></span></span> = 1 − <span style="font-size:1.3em">(</span><span class="frac"><span><i>T</i></span><span><i>T</i><sub>c</sub></span></span><span style="font-size:1.3em">)</span><sup>3/2</sup>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="part" aria-labelledby="part-interacting">
+      <h2 id="part-interacting">Interacting systems <span class="ko" lang="ko">상호작용하는 계</span></h2>
+      <ol class="demos" start="9">
+        <li class="demo">
+          <span class="num">9</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/Ising-model-basics/">Ising model</a><span class="ko" lang="ko">이징 모형</span></h3>
+            <p>Interacting spins on a lattice, Monte Carlo sampling, and the phase transition to a magnetized state.</p>
+            <p class="ko" lang="ko">격자 위에서 상호작용하는 스핀, 몬테카를로 샘플링, 그리고 자화된 상태로의 상전이.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/Ising-model-basics/">Open demo</a>
+              <a href="https://github.com/lshlj82/Ising-model-basics">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="U equals minus epsilon times the sum over neighboring pairs of s i s j">
+            <i>U</i> = −<i>ε</i> <span style="font-size:1.35em">∑</span><sub>⟨<i>ij</i>⟩</sub> <i>s</i><sub><i>i</i></sub><i>s</i><sub><i>j</i></sub>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section class="part refs" aria-labelledby="part-refs">
+      <h2 id="part-refs">References <span class="ko" lang="ko">참고문헌</span></h2>
+      <ul>
+        <li>Daniel V. Schroeder, <i>An Introduction to Thermal Physics</i> (Oxford University Press, 2021; originally Addison Wesley Longman, 2000).</li>
+        <li>Prof. Sang Hoon Lee, lecture notes for Statistical Physics 2. <span class="ko" lang="ko">이상훈 교수, 통계물리2 강의 노트.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee. All demos run in the browser with no installation, and the source code for each one is on <a href="https://github.com/lshlj82">GitHub</a>.<br><span lang="ko">이상훈 교수의 강의 노트를 바탕으로 Claude Opus 5.5가 만들었습니다. 모든 데모는 설치 없이 브라우저에서 실행되며, 각 데모의 소스 코드는 GitHub에서 볼 수 있습니다.</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  const kB = 1.380649e-23;
+  const m = 39.948 * 1.66054e-27;           // argon
+  const N = 900;
+  const pos = new Float32Array(3 * N), vel = new Float64Array(3 * N);
+  let T = 300;
+
+  function gauss() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random();
+    v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  const sigma0 = Math.sqrt(kB * T / m);
+  for (let i = 0; i < 3 * N; i++) { pos[i] = Math.random() * 2 - 1; vel[i] = sigma0 * gauss(); }
+  // Rescale so the kinetic temperature matches T exactly
+  (function () { let s = 0; for (let i = 0; i < 3 * N; i++) s += vel[i] * vel[i];
+    const f = Math.sqrt(3 * N * kB * T / m / s); for (let i = 0; i < 3 * N; i++) vel[i] *= f; })();
+
+  const vmax = () => Math.sqrt(2 * kB * T / m);
+
+  // ---------- colors ----------
+  let C = {};
+  function hex(h) { h = h.trim().replace('#', ''); return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)]; }
+  function readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    ['ink','muted','rule','slow','fast','shell'].forEach(k => C[k] = cs.getPropertyValue('--' + k).trim());
+    C.slowRGB = hex(C.slow); C.fastRGB = hex(C.fast);
+    C.serif = cs.getPropertyValue('--serif').trim();
+  }
+  function speedColor(sp) {
+    const t = Math.min(1, sp / 1000), a = C.slowRGB, b = C.fastRGB;
+    return 'rgb(' + Math.round(a[0] + (b[0]-a[0])*t) + ',' + Math.round(a[1] + (b[1]-a[1])*t) + ',' + Math.round(a[2] + (b[2]-a[2])*t) + ')';
+  }
+
+  // ---------- shaded sphere sprites ----------
+  const NC = 32;
+  function mix(a, b, t) { return [0,1,2].map(k => Math.round(a[k] + (b[k] - a[k]) * t)); }
+  function rgb(c) { return 'rgb(' + c.join(',') + ')'; }
+  function makeSprites(r) {
+    const dpr = window.devicePixelRatio || 1, size = Math.ceil(2 * r * dpr) + 2, out = [];
+    for (let k = 0; k < NC; k++) {
+      const base = mix(C.slowRGB, C.fastRGB, k / (NC - 1));
+      const cv = document.createElement('canvas'); cv.width = cv.height = size;
+      const g = cv.getContext('2d'), c = size / 2, R = r * dpr;
+      const grad = g.createRadialGradient(c - 0.35 * R, c - 0.4 * R, 0.05 * R, c, c, R);
+      grad.addColorStop(0, rgb(mix(base, [255, 255, 255], 0.65)));
+      grad.addColorStop(0.45, rgb(base));
+      grad.addColorStop(1, rgb(mix(base, [0, 0, 0], 0.45)));
+      g.fillStyle = grad; g.beginPath(); g.arc(c, c, R, 0, 2 * Math.PI); g.fill();
+      out.push(cv);
+    }
+    return { list: out, half: size / 2 / dpr, size: size / dpr };
+  }
+  let boxSprites, velSprites;
+  function buildSprites() {
+    if (!C.slowRGB || !views[0].w) return;
+    boxSprites = makeSprites(Math.max(2.4, views[0].w / 125));
+    velSprites = makeSprites(Math.max(2, views[1].w / 155));
+  }
+  function spriteFor(set, sp) { return set.list[Math.round(Math.min(1, sp / 1000) * (NC - 1))]; }
+  const order = new Uint16Array(N), depthBuf = new Float32Array(N), px = new Float32Array(N), py = new Float32Array(N);
+  function drawAtoms(ctx, set, cx, cy, R, getXYZ) {
+    for (let i = 0; i < N; i++) {
+      const p = proj(...getXYZ(i)); px[i] = cx + p[0] * R; py[i] = cy - p[1] * R; depthBuf[i] = p[2]; order[i] = i;
+    }
+    order.sort((a, b) => depthBuf[b] - depthBuf[a]);   // far atoms first
+    for (let n = 0; n < N; n++) {
+      const i = order[n], sp = Math.hypot(vel[3*i], vel[3*i+1], vel[3*i+2]);
+      ctx.drawImage(spriteFor(set, sp), px[i] - set.half, py[i] - set.half, set.size, set.size);
+    }
+  }
+
+  // ---------- canvases ----------
+  const views = ['boxView', 'velView', 'histView'].map(id => {
+    const c = document.getElementById(id); return { c, ctx: c.getContext('2d'), w: 0 };
+  });
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    views.forEach(v => {
+      v.w = v.c.clientWidth;
+      v.c.width = Math.round(v.w * dpr); v.c.height = Math.round(v.w * dpr);
+      v.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    });
+    buildSprites();
+    draw();
+  }
+
+  // ---------- 3D projection (z is up) ----------
+  let yaw = 0.6, pitch = 0.32;
+  function proj(x, y, z) {
+    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const x1 = x * cy - y * sy, d1 = x * sy + y * cy;
+    const up = z * cp + d1 * sp, depth = -z * sp + d1 * cp;
+    const f = 7 / (7 + depth);
+    return [x1 * f, up * f, depth];
+  }
+  function line(ctx, cx, cy, R, a, b) {
+    const p = proj(...a), q = proj(...b);
+    ctx.moveTo(cx + p[0] * R, cy - p[1] * R); ctx.lineTo(cx + q[0] * R, cy - q[1] * R);
+  }
+  function label(ctx, cx, cy, R, pt, txt, sub) {
+    const p = proj(...pt);
+    const x = cx + p[0] * R, y = cy - p[1] * R;
+    ctx.font = 'italic 15px ' + C.serif; ctx.fillText(txt, x, y);
+    if (sub) { const w = ctx.measureText(txt).width; ctx.font = 'italic 11px ' + C.serif; ctx.fillText(sub, x + w * 0.55 + 1, y + 5); }
+  }
+
+  function drawBox() {
+    const { ctx, w } = views[0]; ctx.clearRect(0, 0, w, w);
+    const cx = w / 2, cy = w / 2, R = w * 0.27;
+    ctx.strokeStyle = C.muted; ctx.lineWidth = 1.2; ctx.beginPath();
+    const s = [-1, 1];
+    for (const a of s) for (const b of s) {
+      line(ctx, cx, cy, R, [-1, a, b], [1, a, b]);
+      line(ctx, cx, cy, R, [a, -1, b], [a, 1, b]);
+      line(ctx, cx, cy, R, [a, b, -1], [a, b, 1]);
+    }
+    ctx.stroke();
+    drawAtoms(ctx, boxSprites, cx, cy, R, i => [pos[3*i], pos[3*i+1], pos[3*i+2]]);
+    ctx.fillStyle = C.muted; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    label(ctx, cx, cy, R, [1.3, -1, -1], 'x'); label(ctx, cx, cy, R, [-1, 1.3, -1], 'y'); label(ctx, cx, cy, R, [-1, -1, 1.3], 'z');
+  }
+
+  function drawVel() {
+    const { ctx, w } = views[1]; ctx.clearRect(0, 0, w, w);
+    const cx = w / 2, cy = w / 2, R = w * 0.38, sc = 1 / 800;
+    ctx.strokeStyle = C.muted; ctx.globalAlpha = 0.6; ctx.lineWidth = 1; ctx.beginPath();
+    line(ctx, cx, cy, R, [-1.1, 0, 0], [1.1, 0, 0]);
+    line(ctx, cx, cy, R, [0, -1.1, 0], [0, 1.1, 0]);
+    line(ctx, cx, cy, R, [0, 0, -1.1], [0, 0, 1.1]);
+    ctx.stroke(); ctx.globalAlpha = 1;
+    drawAtoms(ctx, velSprites, cx, cy, R, i => [vel[3*i] * sc, vel[3*i+1] * sc, vel[3*i+2] * sc]);
+    // Shell at v_max: three great circles
+    const rs = vmax() * sc;
+    ctx.strokeStyle = C.shell; ctx.lineWidth = 2; ctx.beginPath();
+    const n = 72;
+    for (let k = 0; k < 3; k++) for (let j = 0; j <= n; j++) {
+      const t = 2 * Math.PI * j / n, c = Math.cos(t) * rs, s = Math.sin(t) * rs;
+      const pt = k === 0 ? [c, s, 0] : k === 1 ? [c, 0, s] : [0, c, s];
+      const p = proj(...pt), X = cx + p[0] * R, Y = cy - p[1] * R;
+      j === 0 ? ctx.moveTo(X, Y) : ctx.lineTo(X, Y);
+    }
+    ctx.stroke();
+    ctx.fillStyle = C.muted; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    label(ctx, cx, cy, R, [1.22, 0, 0], 'v', 'x'); label(ctx, cx, cy, R, [0, 1.22, 0], 'v', 'y'); label(ctx, cx, cy, R, [0, 0, 1.2], 'v', 'z');
+    ctx.fillStyle = C.shell; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.font = 'italic 15px ' + C.serif;
+    ctx.fillText('|v| = v', 8, 22);
+    const wv = ctx.measureText('|v| = v').width;
+    ctx.font = 'italic 11px ' + C.serif; ctx.fillText('max', 8 + wv + 1, 26);
+  }
+
+  const vTop = 1600, nb = 40, bw = vTop / nb;
+  function drawHist() {
+    const { ctx, w } = views[2]; ctx.clearRect(0, 0, w, w);
+    const L = 30, Rm = 12, Tp = 28, B = w - 46, W = w - L - Rm, H = B - Tp;
+    const counts = new Array(nb).fill(0);
+    for (let i = 0; i < N; i++) {
+      const sp = Math.hypot(vel[3*i], vel[3*i+1], vel[3*i+2]);
+      const b = Math.floor(sp / bw); if (b < nb) counts[b]++;
+    }
+    const a = m / (2 * kB * T), norm = 4 * Math.PI * Math.pow(a / Math.PI, 1.5);
+    const D = v => norm * v * v * Math.exp(-a * v * v) * N * bw;
+    const peak = D(vmax());
+    const ymax = Math.max(peak * 1.3, Math.max(...counts) * 1.08);
+    const X = v => L + v / vTop * W, Y = c => B - c / ymax * H;
+    ctx.fillStyle = C.slow; ctx.strokeStyle = C.slow; ctx.lineWidth = 1;
+    for (let b = 0; b < nb; b++) {
+      if (!counts[b]) continue;
+      const x0 = X(b * bw), x1 = X((b + 1) * bw), y = Y(counts[b]);
+      ctx.globalAlpha = 0.35; ctx.fillRect(x0, y, x1 - x0, B - y);
+      ctx.globalAlpha = 0.9; ctx.strokeRect(x0 + 0.5, y + 0.5, x1 - x0 - 1, B - y);
+    }
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 2.2; ctx.beginPath();
+    for (let j = 0; j <= 200; j++) { const v = vTop * j / 200; j ? ctx.lineTo(X(v), Y(D(v))) : ctx.moveTo(X(v), Y(D(v))); }
+    ctx.stroke();
+    ctx.strokeStyle = C.muted; ctx.lineWidth = 1; ctx.beginPath();
+    ctx.moveTo(L, Tp - 10); ctx.lineTo(L, B); ctx.lineTo(L + W, B); ctx.stroke();
+    ctx.fillStyle = C.muted; ctx.font = '12px ' + C.serif; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (let v = 0; v <= vTop; v += 400) ctx.fillText(String(v), X(v), B + 6);
+    ctx.font = '13px ' + C.serif; ctx.fillText('speed (m/s)', L + W / 2, B + 24);
+    ctx.fillStyle = C.ink; ctx.font = 'italic 15px ' + C.serif; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    const lx = Math.min(X(vmax()) + 14, L + W - 130);
+    ctx.fillText('Maxwell, T = ' + T + ' K', lx, Y(peak) - 6);
+  }
+
+  function draw() { if (!C.slow || !boxSprites) return; drawBox(); drawVel(); drawHist(); }
+
+  // ---------- dynamics ----------
+  const posScale = 1.2e-3;  // box units per (m/s · s)
+  function step(dt) {
+    for (let i = 0; i < 3 * N; i++) {
+      pos[i] += vel[i] * dt * posScale;
+      if (pos[i] > 1) { pos[i] = 2 - pos[i]; vel[i] = -vel[i]; }
+      else if (pos[i] < -1) { pos[i] = -2 - pos[i]; vel[i] = -vel[i]; }
+    }
+    // A few random elastic collisions keep the distribution alive (energy and momentum conserved)
+    for (let k = 0; k < 12; k++) {
+      const i = (Math.random() * N) | 0, j = (Math.random() * N) | 0; if (i === j) continue;
+      const cx = (vel[3*i] + vel[3*j]) / 2, cy = (vel[3*i+1] + vel[3*j+1]) / 2, cz = (vel[3*i+2] + vel[3*j+2]) / 2;
+      const u = Math.hypot(vel[3*i] - vel[3*j], vel[3*i+1] - vel[3*j+1], vel[3*i+2] - vel[3*j+2]) / 2;
+      const ct = 2 * Math.random() - 1, st = Math.sqrt(1 - ct * ct), ph = 2 * Math.PI * Math.random();
+      const nx = st * Math.cos(ph) * u, ny = st * Math.sin(ph) * u, nz = ct * u;
+      vel[3*i] = cx + nx; vel[3*i+1] = cy + ny; vel[3*i+2] = cz + nz;
+      vel[3*j] = cx - nx; vel[3*j+1] = cy - ny; vel[3*j+2] = cz - nz;
+    }
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let running = !reduceMotion, dragging = false, last = performance.now();
+  const toggle = document.getElementById('toggle');
+  toggle.textContent = running ? 'Pause' : 'Play';
+  toggle.addEventListener('click', () => { running = !running; toggle.textContent = running ? 'Pause' : 'Play'; });
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (running) { step(dt); if (!dragging) yaw += 0.12 * dt; draw(); }
+    requestAnimationFrame(frame);
+  }
+
+  // Dragging either 3D view rotates both
+  document.querySelectorAll('canvas.rotatable').forEach(c => {
+    let px, py;
+    c.addEventListener('pointerdown', e => { dragging = true; px = e.clientX; py = e.clientY; c.setPointerCapture(e.pointerId); });
+    c.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      yaw += (e.clientX - px) * 0.01;
+      pitch = Math.max(-1.4, Math.min(1.4, pitch + (e.clientY - py) * 0.01));
+      px = e.clientX; py = e.clientY; draw();
+    });
+    const end = () => { dragging = false; };
+    c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
+  });
+
+  const tempInput = document.getElementById('temp'), tempOut = document.getElementById('tempOut');
+  tempInput.addEventListener('input', () => {
+    const Tn = parseFloat(tempInput.value), f = Math.sqrt(Tn / T);
+    for (let i = 0; i < 3 * N; i++) vel[i] *= f;
+    T = Tn; tempOut.textContent = T + ' K'; draw();
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); buildSprites(); draw(); });
+  readColors();
+  new ResizeObserver(resize).observe(document.querySelector('.panels'));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(draw);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
