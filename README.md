@@ -26,7 +26,7 @@ Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 
 The page is a single self-contained `index.html` with no build step. Its header runs a live version of demo 2: 900 argon atoms shown in a 3D box, in 3D velocity space with a shell at the most probable speed *v*<sub>max</sub>, and as a speed histogram compared with the Maxwell distribution. A temperature slider (100–1000 K) rescales the velocities, and dragging either 3D view rotates both.
 
-The page supports light and dark mode, adapts to phone screens, and starts the animation paused for visitors who have reduced motion turned on.
+The page supports light and dark mode, with a sun/moon button in the top-right corner to switch by hand, adapts to phone screens, and starts the animation paused for visitors who have reduced motion turned on.
 
 페이지는 빌드 과정 없이 `index.html` 파일 하나로 이루어져 있습니다. 상단에서는 데모 2를 실시간으로 실행하여, 아르곤 원자 900개를 3차원 상자, 3차원 속도 공간, 맥스웰 분포와 비교한 속력 히스토그램으로 보여줍니다.
 
