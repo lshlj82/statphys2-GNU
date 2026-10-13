@@ -16,11 +16,15 @@ Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 | 2 | Boltzmann statistics of an ideal gas | 이상 기체의 볼츠만 통계 | [demo](https://lshlj82.github.io/Boltzmann-ideal-gas/) · [source](https://github.com/lshlj82/Boltzmann-ideal-gas) |
 | 3 | Gibbs statistics | 깁스 통계 | [demo](https://lshlj82.github.io/Gibbs-statistics/) · [source](https://github.com/lshlj82/Gibbs-statistics) |
 | 4 | Boson vs Fermion | 보손 대 페르미온 | [demo](https://lshlj82.github.io/boson-vs-fermion/) · [source](https://github.com/lshlj82/boson-vs-fermion) |
+| 4+ | Fermions and bosons on a ladder (supplement) | 등간격 사다리 위의 페르미온과 보손 (보충 자료) | [demo](https://lshlj82.github.io/FD-BE-from-isolated-systems/) · [한국어](https://lshlj82.github.io/FD-BE-from-isolated-systems/ko.html) · [source](https://github.com/lshlj82/FD-BE-from-isolated-systems) |
 | 5 | Degenerate Fermi gas | 축퇴 페르미 기체 | [demo](https://lshlj82.github.io/degenerate-fermi-gas/) · [source](https://github.com/lshlj82/degenerate-fermi-gas) |
 | 6 | Photon statistics | 광자 통계 | [demo](https://lshlj82.github.io/photon-statistics/) · [source](https://github.com/lshlj82/photon-statistics) |
 | 7 | Debye theory of solids | 고체의 디바이 이론 | [demo](https://lshlj82.github.io/Debye-theory/) · [source](https://github.com/lshlj82/Debye-theory) |
 | 8 | Bose–Einstein condensation | 보스–아인슈타인 응축 | [demo](https://lshlj82.github.io/BEC/) · [source](https://github.com/lshlj82/BEC) |
 | 9 | Ising model | 이징 모형 | [demo](https://lshlj82.github.io/Ising-model-basics/) · [source](https://github.com/lshlj82/Ising-model-basics) |
+
+Demo 4+ is a supplement to demo 4, not a separate lecture topic. It follows Problems 7.16 and 7.17 of Schroeder's textbook, in English and Korean.
+데모 4+는 별도의 강의 주제가 아니라 데모 4의 보충 자료입니다. Schroeder 교과서 연습문제 7.16과 7.17을 바탕으로 영어와 한국어로 다룹니다.
 
 ## About the page · 페이지 소개
 
