@@ -26,6 +26,29 @@ Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 Demo 4+ is a supplement to demo 4, not a separate lecture topic. It follows Problems 7.16 and 7.17 of Schroeder's textbook, in English and Korean.
 데모 4+는 별도의 강의 주제가 아니라 데모 4의 보충 자료입니다. Schroeder 교과서 연습문제 7.16과 7.17을 바탕으로 영어와 한국어로 다룹니다.
 
+### Going deeper: the Ising model in the graduate courses · 심화 참고 자료: 대학원 과목의 이징 모형
+
+Demo 9 lists deeper-level references from two graduate courses in the department, for students who want to go beyond the introduction.
+데모 9에는 입문 수준을 넘어 더 공부하고 싶은 학생을 위해 학과의 두 대학원 과목에서 가져온 심화 참고 자료가 함께 실려 있습니다.
+
+**[Special Topics in Complex Systems](https://github.com/lshlj82/special-topics-in-complex-systems-GNU)** (복잡계 특론)
+
+| Topic | 주제 | Links |
+|---|---|---|
+| The Ising model: introduction | 이징 모형 입문 | [demo](https://lshlj82.github.io/Ising-model-preliminary/) · [source](https://github.com/lshlj82/Ising-model-preliminary) |
+| The 1D Ising model | 1차원 이징 모형 | [demo](https://lshlj82.github.io/Ising-model-1D/) · [source](https://github.com/lshlj82/Ising-model-1D) |
+| Mean-field and Landau theory of the Ising model | 이징 모형의 평균장 이론과 란다우 이론 | [demo](https://lshlj82.github.io/Ising-model-MF-Landau/) · [source](https://github.com/lshlj82/Ising-model-MF-Landau) |
+| The 2D Ising model | 2차원 이징 모형 | [demo](https://lshlj82.github.io/Ising-model-2D/) · [source](https://github.com/lshlj82/Ising-model-2D) |
+| The renormalization group for the Ising model | 이징 모형의 재규격화 군 | [demo](https://lshlj82.github.io/Ising-model-RG/) · [source](https://github.com/lshlj82/Ising-model-RG) |
+
+**[Phase Transitions and Critical Phenomena](https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU)** (상전이와 임계현상)
+
+| Chapter | 장 | Links |
+|---|---|---|
+| Ch. 2, Part 1: thermodynamic limit, exact enumeration of the Ising model, convexity, symmetry | 2장 1부: 열역학적 극한, 이징 모형의 정확한 열거, 볼록성, 대칭 | [demo](https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/ch02a-phase-transitions-in-principle.html) · [source](https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU/blob/main/ch02a-phase-transitions-in-principle.html) |
+| Ch. 2, Part 2: Peierls argument, symmetry and ergodicity breaking, lattice gases | 2장 2부: 파이얼스 논증, 대칭 깨짐과 에르고딕성 깨짐, 격자 기체 | [demo](https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/ch02b-symmetry-breaking-and-lattice-gases.html) · [source](https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU/blob/main/ch02b-symmetry-breaking-and-lattice-gases.html) |
+| Ch. 3: transfer matrix, low-temperature expansion, Weiss mean-field theory, Ising model on networks | 3장: 전달 행렬, 저온 전개, 바이스 평균장 이론, 네트워크 위의 이징 모형 | [demo](https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/ch03-phase-transitions-in-practice.html) · [source](https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU/blob/main/ch03-phase-transitions-in-practice.html) |
+
 ## About the page · 페이지 소개
 
 The page is a single self-contained `index.html` with no build step. Its header runs a live version of demo 2: 900 argon atoms shown in a 3D box, in 3D velocity space with a shell at the most probable speed *v*<sub>max</sub>, and as a speed histogram compared with the Maxwell distribution. A temperature slider (100–1000 K) rescales the velocities, and dragging either 3D view rotates both.
@@ -47,4 +70,5 @@ Open `index.html` in any modern browser. Fonts load from Google Fonts when onlin
 ## References · 참고문헌
 
 - Daniel V. Schroeder, *An Introduction to Thermal Physics* (Oxford University Press, 2021; originally Addison Wesley Longman, 2000).
+- For the Ising model at the graduate level (이징 모형의 대학원 수준 심화 자료): Kim Christensen and Nicholas R. Moloney, *Complexity and Criticality* (Imperial College Press, 2005), used in Special Topics in Complex Systems; Nigel Goldenfeld, *Lectures on Phase Transitions and the Renormalization Group* (Addison-Wesley, 1992), used in Phase Transitions and Critical Phenomena.
 - Prof. Sang Hoon Lee, lecture notes for Statistical Physics 2. (이상훈 교수, 통계물리2 강의 노트)

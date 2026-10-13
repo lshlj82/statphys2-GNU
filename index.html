@@ -194,6 +194,34 @@
   .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 0.2em; }
   .frac > span:last-child { padding: 0 0.2em; }
 
+  /* Deeper-level references under a demo */
+  .deeper {
+    margin-top: 1.1rem;
+    padding: 0.9rem 1rem 0.4rem;
+    border-left: 2px solid var(--accent);
+    max-width: 36rem;
+  }
+  .deeper h4 {
+    margin: 0 0 0.25rem;
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .deeper h4 .ko { display: inline; font-weight: 400; margin-left: 0.4rem; }
+  .deeper > p { font-size: 0.95rem; margin: 0 0 0.6rem; }
+  .deeper h5 {
+    margin: 0.8rem 0 0.3rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .deeper h5 a { color: inherit; }
+  .deeper ul { margin: 0 0 0.5rem; padding-left: 1.1rem; font-size: 0.95rem; }
+  .deeper li { margin-bottom: 0.35rem; }
+  .deeper li .ko { display: block; font-size: 0.88rem; }
+  .deeper .desc { color: var(--muted); }
+  .deeper .src { font-family: var(--sans); font-size: 0.8rem; margin-left: 0.35rem; }
   .ko { color: var(--muted); word-break: keep-all; }
   h3 .ko { display: block; font-size: 1.05rem; font-weight: 400; margin-top: 0.15rem; }
   .course { margin: 0 0 1.25rem; font-family: var(--sans); font-size: 0.95rem; color: var(--ink); }
@@ -428,6 +456,25 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
               <a class="primary" href="https://lshlj82.github.io/Ising-model-basics/">Open demo</a>
               <a href="https://github.com/lshlj82/Ising-model-basics">Source on GitHub</a>
             </div>
+            <aside class="deeper" aria-labelledby="deeper-ising">
+              <h4 id="deeper-ising">Going deeper<span class="ko" lang="ko">심화 참고 자료</span></h4>
+              <p>For students who want more, the Ising model is developed further in two graduate courses in the department.</p>
+              <p class="ko" lang="ko">더 공부하고 싶은 학생을 위해, 학과의 두 대학원 과목에서 이징 모형을 더 깊이 다룹니다.</p>
+              <h5><a href="https://lshlj82.github.io/special-topics-in-complex-systems-GNU/">Special Topics in Complex Systems</a> <span class="ko" lang="ko">복잡계 특론</span></h5>
+              <ul>
+                <li><a href="https://lshlj82.github.io/Ising-model-preliminary/">The Ising model: introduction</a><a class="src" href="https://github.com/lshlj82/Ising-model-preliminary">source</a><span class="ko" lang="ko">이징 모형 입문</span></li>
+                <li><a href="https://lshlj82.github.io/Ising-model-1D/">The 1D Ising model</a><span class="desc">: transfer-matrix solution and the absence of order at <i>T</i>&nbsp;&gt;&nbsp;0</span><a class="src" href="https://github.com/lshlj82/Ising-model-1D">source</a><span class="ko" lang="ko">1차원 이징 모형: 전달 행렬 풀이와 <i>T</i>&nbsp;&gt;&nbsp;0에서 질서가 없는 이유</span></li>
+                <li><a href="https://lshlj82.github.io/Ising-model-MF-Landau/">Mean-field and Landau theory of the Ising model</a><a class="src" href="https://github.com/lshlj82/Ising-model-MF-Landau">source</a><span class="ko" lang="ko">이징 모형의 평균장 이론과 란다우 이론</span></li>
+                <li><a href="https://lshlj82.github.io/Ising-model-2D/">The 2D Ising model</a><span class="desc">: Monte Carlo, Onsager’s <i>T</i><sub>c</sub>, and finite-size effects</span><a class="src" href="https://github.com/lshlj82/Ising-model-2D">source</a><span class="ko" lang="ko">2차원 이징 모형: 몬테카를로, 온사거의 <i>T</i><sub>c</sub>, 유한 크기 효과</span></li>
+                <li><a href="https://lshlj82.github.io/Ising-model-RG/">The renormalization group for the Ising model</a><a class="src" href="https://github.com/lshlj82/Ising-model-RG">source</a><span class="ko" lang="ko">이징 모형의 재규격화 군</span></li>
+              </ul>
+              <h5><a href="https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/">Phase Transitions and Critical Phenomena</a> <span class="ko" lang="ko">상전이와 임계현상</span></h5>
+              <ul>
+                <li><a href="https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/ch02a-phase-transitions-in-principle.html">Chapter 2, Part 1</a><span class="desc">: the thermodynamic limit, exact enumeration of a 4&nbsp;×&nbsp;4 Ising lattice, convexity, symmetry, and domain walls in 1D</span><a class="src" href="https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU/blob/main/ch02a-phase-transitions-in-principle.html">source</a><span class="ko" lang="ko">2장 1부: 열역학적 극한, 4&nbsp;×&nbsp;4 이징 격자의 정확한 열거, 볼록성, 대칭, 1차원 도메인 벽</span></li>
+                <li><a href="https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/ch02b-symmetry-breaking-and-lattice-gases.html">Chapter 2, Part 2</a><span class="desc">: the Peierls argument, spontaneous symmetry breaking, ergodicity breaking, and the lattice gas as an Ising magnet</span><a class="src" href="https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU/blob/main/ch02b-symmetry-breaking-and-lattice-gases.html">source</a><span class="ko" lang="ko">2장 2부: 파이얼스 논증, 자발적 대칭 깨짐, 에르고딕성 깨짐, 이징 자성체로서의 격자 기체</span></li>
+                <li><a href="https://lshlj82.github.io/phase-transition-and-critical-phenomena-GNU/ch03-phase-transitions-in-practice.html">Chapter 3</a><span class="desc">: exact 1D solution by transfer matrix, correlations, the low-temperature expansion, Weiss mean-field theory, and the Ising model on networks</span><a class="src" href="https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU/blob/main/ch03-phase-transitions-in-practice.html">source</a><span class="ko" lang="ko">3장: 전달 행렬을 이용한 1차원 정확한 풀이, 상관 함수, 저온 전개, 바이스 평균장 이론, 네트워크 위의 이징 모형</span></li>
+              </ul>
+            </aside>
           </div>
           <div class="eq" aria-label="U equals minus epsilon times the sum over neighboring pairs of s i s j">
             <i>U</i> = −<i>ε</i> <span style="font-size:1.35em">∑</span><sub>⟨<i>ij</i>⟩</sub> <i>s</i><sub><i>i</i></sub><i>s</i><sub><i>j</i></sub>
@@ -439,6 +486,7 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
       <h2 id="part-refs">References <span class="ko" lang="ko">참고문헌</span></h2>
       <ul>
         <li>Daniel V. Schroeder, <i>An Introduction to Thermal Physics</i> (Oxford University Press, 2021; originally Addison Wesley Longman, 2000).</li>
+        <li>For the Ising model at the graduate level: <a href="https://github.com/lshlj82/special-topics-in-complex-systems-GNU">Special Topics in Complex Systems</a> (following Kim Christensen and Nicholas R. Moloney, <i>Complexity and Criticality</i>, Imperial College Press, 2005) and <a href="https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU">Phase Transitions and Critical Phenomena</a> (following Nigel Goldenfeld, <i>Lectures on Phase Transitions and the Renormalization Group</i>, Addison-Wesley, 1992). <span class="ko" lang="ko">이징 모형의 대학원 수준 심화 자료.</span></li>
         <li>Prof. Sang Hoon Lee, lecture notes for Statistical Physics 2. <span class="ko" lang="ko">이상훈 교수, 통계물리2 강의 노트.</span></li>
       </ul>
     </section>
