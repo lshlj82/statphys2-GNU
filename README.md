@@ -3,7 +3,7 @@
 
 Landing page for the interactive web demos that accompany *Statistical Physics 2* (통계물리2) in the Department of Physics, Gyeongsang National University.
 
-**Live page:** https://lshlj82.github.io/stat-phys-2/
+**Live page:** https://lshlj82.github.io/statphys2-GNU/
 
 Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 이상훈 교수의 강의 노트를 바탕으로 Claude Opus 5.5가 만들었습니다.
