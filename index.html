@@ -228,6 +228,9 @@
   .course span { display: block; color: var(--muted); }
   .credit { margin-top: 1.25rem; font-family: var(--sans); font-size: 0.95rem; color: var(--muted); }
   .credit span { display: block; }
+  .hero-text .sequence { margin-top: 0.9rem; font-family: var(--sans); font-size: 0.95rem; color: var(--muted); max-width: 40rem; }
+  .sequence a { font-weight: 600; text-underline-offset: 3px; }
+  .sequence span { display: block; margin-top: 0.15rem; }
   .refs ul { margin: 0.5rem 0 1.5rem; padding-left: 1.2rem; max-width: 46rem; }
   .refs li { margin-bottom: 0.5rem; }
   footer {
@@ -265,6 +268,7 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
       <p>Nine browser simulations that accompany the course, from the Boltzmann factor to the Ising model. Open any demo to change the parameters and watch the physics respond.</p>
       <p class="ko" lang="ko" style="margin-top:0.6rem">볼츠만 인자에서 이징 모형까지, 강의와 함께 보는 아홉 가지 브라우저 시뮬레이션입니다. 데모를 열어 매개변수를 바꾸며 물리 현상이 어떻게 달라지는지 확인해 보세요.</p>
       <p class="credit">Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.<span lang="ko">이상훈 교수의 강의 노트를 바탕으로 Claude Opus 5.5가 만들었습니다.</span></p>
+      <p class="sequence">Follows <a href="https://lshlj82.github.io/statphys1-GNU/">Statistical Physics 1</a> (Schroeder, Chapters 1–5): energy, entropy, temperature, thermodynamic potentials, and phase transformations.<span lang="ko">앞선 과목 <a href="https://lshlj82.github.io/statphys1-GNU/">통계물리1</a>(Schroeder 1–5장): 에너지, 엔트로피, 온도, 열역학 퍼텐셜, 상변화.</span></p>
     </div>
     <figure class="gas-figure">
       <div class="panels">
@@ -487,6 +491,7 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
       <ul>
         <li>Daniel V. Schroeder, <i>An Introduction to Thermal Physics</i> (Oxford University Press, 2021; originally Addison Wesley Longman, 2000).</li>
         <li>For the Ising model at the graduate level: <a href="https://github.com/lshlj82/special-topics-in-complex-systems-GNU">Special Topics in Complex Systems</a> (following Kim Christensen and Nicholas R. Moloney, <i>Complexity and Criticality</i>, Imperial College Press, 2005) and <a href="https://github.com/lshlj82/phase-transition-and-critical-phenomena-GNU">Phase Transitions and Critical Phenomena</a> (following Nigel Goldenfeld, <i>Lectures on Phase Transitions and the Renormalization Group</i>, Addison-Wesley, 1992). <span class="ko" lang="ko">이징 모형의 대학원 수준 심화 자료.</span></li>
+        <li>The course follows <a href="https://lshlj82.github.io/statphys1-GNU/">Statistical Physics 1</a>. <span class="ko" lang="ko">앞선 과목: 통계물리1.</span></li>
         <li>Prof. Sang Hoon Lee, lecture notes for Statistical Physics 2. <span class="ko" lang="ko">이상훈 교수, 통계물리2 강의 노트.</span></li>
       </ul>
     </section>

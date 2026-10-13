@@ -8,6 +8,8 @@ Landing page for the interactive web demos that accompany *Statistical Physics 2
 Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 이상훈 교수의 강의 노트를 바탕으로 Claude Opus 5.5가 만들었습니다.
 
+**Previous course · 앞선 과목:** [Statistical Physics 1](https://github.com/lshlj82/statphys1-GNU) ([live page](https://lshlj82.github.io/statphys1-GNU/)), covering Schroeder Chapters 1–5: energy, entropy, temperature, thermodynamic potentials, and phase transformations. 통계물리1에서는 Schroeder 1–5장의 에너지, 엔트로피, 온도, 열역학 퍼텐셜, 상변화를 다룹니다.
+
 ## Demos · 데모 목록
 
 | # | Demo | 데모 | Links |
@@ -71,4 +73,5 @@ Open `index.html` in any modern browser. Fonts load from Google Fonts when onlin
 
 - Daniel V. Schroeder, *An Introduction to Thermal Physics* (Oxford University Press, 2021; originally Addison Wesley Longman, 2000).
 - For the Ising model at the graduate level (이징 모형의 대학원 수준 심화 자료): Kim Christensen and Nicholas R. Moloney, *Complexity and Criticality* (Imperial College Press, 2005), used in Special Topics in Complex Systems; Nigel Goldenfeld, *Lectures on Phase Transitions and the Renormalization Group* (Addison-Wesley, 1992), used in Phase Transitions and Critical Phenomena.
+- Previous course: [Statistical Physics 1](https://lshlj82.github.io/statphys1-GNU/). (앞선 과목: 통계물리1)
 - Prof. Sang Hoon Lee, lecture notes for Statistical Physics 2. (이상훈 교수, 통계물리2 강의 노트)
