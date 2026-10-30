@@ -19,6 +19,8 @@
     --slow: #2f5bd3;
     --fast: #d6453d;
     --shell: #2e9d55;
+    --fast-text: #b5342d;   /* darker text tokens: >= 4.5:1 on --paper */
+    --shell-text: #1f7a40;
     --accent: #b5770f;
     --serif: "STIX Two Text", "Noto Serif KR", "Cambria", "Times New Roman", serif;
     --sans: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -37,6 +39,8 @@
       --slow: #6f93f2;
       --fast: #ff6b5e;
       --shell: #7ddc8a;
+      --fast-text: #ff6b5e;
+      --shell-text: #7ddc8a;
       --accent: #e3a43a;
     }
   }
@@ -50,6 +54,8 @@
       --slow: #6f93f2;
       --fast: #ff6b5e;
       --shell: #7ddc8a;
+      --fast-text: #ff6b5e;
+      --shell-text: #7ddc8a;
     --accent: #e3a43a;
   }
   *, *::before, *::after { box-sizing: inherit; }
@@ -64,7 +70,7 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
-  a:focus-visible, button:focus-visible, input:focus-visible {
+  a:focus-visible, button:focus-visible, input:focus-visible, canvas:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
@@ -108,8 +114,8 @@
   }
   .panel p .ko { display: block; margin-top: 0.4rem; font-size: 0.92rem; }
   .c-slow { color: var(--slow); }
-  .c-fast { color: var(--fast); }
-  .c-shell { color: var(--shell); }
+  .c-fast { color: var(--fast-text); }
+  .c-shell { color: var(--shell-text); }
   .gas-figure figcaption {
     font-family: var(--sans);
     font-size: 0.85rem;
@@ -118,6 +124,7 @@
   }
   .controls {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.75rem;
     margin-top: 1.5rem;
@@ -125,7 +132,7 @@
     font-family: var(--sans);
     font-size: 0.9rem;
   }
-  .controls label { display: flex; align-items: center; gap: 0.6rem; flex: 1; }
+  .controls label { display: flex; align-items: center; gap: 0.6rem; flex: 1 1 12rem; }
   .controls label > span { font-family: var(--serif); font-size: 1.1rem; }
   .controls input[type="range"] { flex: 1; accent-color: var(--slow); min-width: 0; }
   .controls output { font-variant-numeric: tabular-nums; min-width: 3.6rem; }
@@ -273,17 +280,16 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
     <figure class="gas-figure">
       <div class="panels">
         <div class="panel">
-          <canvas id="boxView" class="rotatable" aria-label="Argon atoms moving in a 3D box, colored by speed"></canvas>
-          <p>The atoms in their 3D box. Color runs from <span class="c-slow">slow</span> to <span class="c-fast">fast</span>. Drag either view to rotate both.<span class="ko" lang="ko">3차원 상자 속 원자들. 색은 <span class="c-slow">느린</span> 원자에서 <span class="c-fast">빠른</span> 원자로 변합니다. 어느 쪽 그림이든 끌면 두 그림이 함께 회전합니다.</span></p>
+          <canvas id="boxView" class="rotatable" tabindex="0" role="img" aria-label="Argon atoms moving in a 3D box, colored by speed. Use the arrow keys to rotate both 3D views; Home resets the view." aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home"></canvas>
+          <p>The atoms in their 3D box. Color runs from <span class="c-slow">slow</span> to <span class="c-fast">fast</span>. Drag either view, or focus it and use the arrow keys, to rotate both.<span class="ko" lang="ko">3차원 상자 속 원자들. 색은 <span class="c-slow">느린</span> 원자에서 <span class="c-fast">빠른</span> 원자로 변합니다. 어느 쪽 그림이든 끌거나, 선택한 뒤 방향키를 누르면 두 그림이 함께 회전합니다.</span></p>
         </div>
         <div class="panel">
-          <canvas id="velView" class="rotatable" aria-label="The same atoms plotted in 3D velocity space with a shell at the most probable speed"></canvas>
+          <canvas id="velView" class="rotatable" tabindex="0" role="img" aria-label="The same atoms plotted in 3D velocity space with a shell at the most probable speed. Use the arrow keys to rotate both 3D views; Home resets the view." aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home"></canvas>
           <p>Velocity space in 3D. Points are densest at the origin, yet the most likely speed is the <span class="c-shell">green shell</span> at <i>v</i><sub>max</sub>: its area 4π<i>v</i><sup>2</sup> holds more velocity vectors.<span class="ko" lang="ko">3차원 속도 공간. 점은 원점에서 가장 빽빽하지만, 가장 확률이 높은 속력은 <i>v</i><sub>max</sub>의 <span class="c-shell">초록 껍질</span>입니다. 넓이 4π<i>v</i><sup>2</sup>에 더 많은 속도 벡터가 담기기 때문입니다.</span></p>
         </div>
         <div class="panel">
-          <canvas id="histView" aria-label="Histogram of atomic speeds compared with the Maxwell speed distribution"></canvas>
-          <p>Histogram of speeds against <i>D</i>(<i>v</i>) at the set temperature.<span class="ko" lang="ko">설정한 온도에서의 속력 히스토그램과 맥스웰 분포 <i>D</i>(<i>v</i>)의 비교.</span></p>
-        </div>
+          <canvas id="histView" role="img" aria-label="Histogram of atomic speeds compared with the Maxwell speed distribution"></canvas>
+          <p>Histogram of speeds against <i>D</i>(<i>v</i>) at the set temperature. Atoms faster than 1600&nbsp;m/s fall off the axis; their number is shown at the top right.<span class="ko" lang="ko">설정한 온도에서의 속력 히스토그램과 맥스웰 분포 <i>D</i>(<i>v</i>)의 비교. 1600&nbsp;m/s보다 빠른 원자는 축 밖에 있으며, 그 수를 오른쪽 위에 표시합니다.</span></p>        </div>
       </div>
       <div class="controls">
         <label>
@@ -292,8 +298,9 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
           <output id="tempOut" for="temp">300 K</output>
         </label>
         <button id="toggle" type="button">Pause</button>
+        <button id="resetView" type="button">Reset view</button>
       </div>
-      <figcaption>900 argon atoms from demo 2, <a href="https://lshlj82.github.io/Boltzmann-ideal-gas/">Boltzmann statistics of an ideal gas</a>. <span lang="ko">데모 2 「이상 기체의 볼츠만 통계」의 아르곤 원자 900개.</span></figcaption>
+      <figcaption>900 argon atoms from demo 2, <a href="https://lshlj82.github.io/Boltzmann-ideal-gas/">Boltzmann statistics of an ideal gas</a>. The atoms do not detect contact with one another: “collisions” pick random pairs of atoms and redistribute their velocities elastically, conserving energy and momentum, which drives the speeds toward the Maxwell distribution. <span lang="ko">데모 2 「이상 기체의 볼츠만 통계」의 아르곤 원자 900개. 원자끼리의 위치 기반 접촉은 검출하지 않습니다. 여기서 “충돌”은 무작위로 고른 원자 쌍의 속도를 에너지와 운동량이 보존되도록 탄성적으로 재분배하는 과정이며, 이 과정이 속력 분포를 맥스웰 분포로 이끕니다.</span></figcaption>
     </figure>
   </header>
 
@@ -524,6 +531,12 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
 
   const vmax = () => Math.sqrt(2 * kB * T / m);
 
+  // Speeds are cached: walls only flip signs, collisions update two entries, T changes rescale all.
+  const speed = new Float64Array(N);
+  function speedOf(i) { return Math.hypot(vel[3*i], vel[3*i+1], vel[3*i+2]); }
+  function refreshSpeeds() { for (let i = 0; i < N; i++) speed[i] = speedOf(i); }
+  refreshSpeeds();
+
   // ---------- colors ----------
   let C = {};
   function hex(h) { h = h.trim().replace('#', ''); return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)]; }
@@ -565,14 +578,19 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
   }
   function spriteFor(set, sp) { return set.list[Math.round(Math.min(1, sp / 1000) * (NC - 1))]; }
   const order = new Uint16Array(N), depthBuf = new Float32Array(N), px = new Float32Array(N), py = new Float32Array(N);
-  function drawAtoms(ctx, set, cx, cy, R, getXYZ) {
+  const byDepth = (a, b) => depthBuf[b] - depthBuf[a];
+  function drawAtoms(ctx, set, cx, cy, R, src, sc) {
+    const { cy: cyw, sy, cp, sp } = rot;
     for (let i = 0; i < N; i++) {
-      const p = proj(...getXYZ(i)); px[i] = cx + p[0] * R; py[i] = cy - p[1] * R; depthBuf[i] = p[2]; order[i] = i;
+      const x = src[3*i] * sc, y = src[3*i+1] * sc, z = src[3*i+2] * sc;
+      const x1 = x * cyw - y * sy, d1 = x * sy + y * cyw;
+      const up = z * cp + d1 * sp, depth = -z * sp + d1 * cp, f = 7 / (7 + depth);
+      px[i] = cx + x1 * f * R; py[i] = cy - up * f * R; depthBuf[i] = depth; order[i] = i;
     }
-    order.sort((a, b) => depthBuf[b] - depthBuf[a]);   // far atoms first
+    order.sort(byDepth);   // far atoms first, O(N log N)
     for (let n = 0; n < N; n++) {
-      const i = order[n], sp = Math.hypot(vel[3*i], vel[3*i+1], vel[3*i+2]);
-      ctx.drawImage(spriteFor(set, sp), px[i] - set.half, py[i] - set.half, set.size, set.size);
+      const i = order[n];
+      ctx.drawImage(spriteFor(set, speed[i]), px[i] - set.half, py[i] - set.half, set.size, set.size);
     }
   }
 
@@ -592,9 +610,18 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
   }
 
   // ---------- 3D projection (z is up) ----------
-  let yaw = 0.6, pitch = 0.32;
+  const YAW0 = 0.6, PITCH0 = 0.32, PITCH_MAX = 1.4;
+  let yaw = YAW0, pitch = PITCH0;
+  const rot = { cy: 0, sy: 0, cp: 0, sp: 0 };
+  // All angle changes go through here: non-finite input is ignored, so NaN can never reach the drawing.
+  function setAngles(y, p) {
+    if (!Number.isFinite(y) || !Number.isFinite(p)) return;
+    yaw = y % (2 * Math.PI); pitch = Math.max(-PITCH_MAX, Math.min(PITCH_MAX, p));
+    rot.cy = Math.cos(yaw); rot.sy = Math.sin(yaw); rot.cp = Math.cos(pitch); rot.sp = Math.sin(pitch);
+  }
+  setAngles(yaw, pitch);
   function proj(x, y, z) {
-    const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const { cy, sy, cp, sp } = rot;
     const x1 = x * cy - y * sy, d1 = x * sy + y * cy;
     const up = z * cp + d1 * sp, depth = -z * sp + d1 * cp;
     const f = 7 / (7 + depth);
@@ -622,7 +649,7 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
       line(ctx, cx, cy, R, [a, b, -1], [a, b, 1]);
     }
     ctx.stroke();
-    drawAtoms(ctx, boxSprites, cx, cy, R, i => [pos[3*i], pos[3*i+1], pos[3*i+2]]);
+    drawAtoms(ctx, boxSprites, cx, cy, R, pos, 1);
     ctx.fillStyle = C.muted; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     label(ctx, cx, cy, R, [1.3, -1, -1], 'x'); label(ctx, cx, cy, R, [-1, 1.3, -1], 'y'); label(ctx, cx, cy, R, [-1, -1, 1.3], 'z');
   }
@@ -635,7 +662,7 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
     line(ctx, cx, cy, R, [0, -1.1, 0], [0, 1.1, 0]);
     line(ctx, cx, cy, R, [0, 0, -1.1], [0, 0, 1.1]);
     ctx.stroke(); ctx.globalAlpha = 1;
-    drawAtoms(ctx, velSprites, cx, cy, R, i => [vel[3*i] * sc, vel[3*i+1] * sc, vel[3*i+2] * sc]);
+    drawAtoms(ctx, velSprites, cx, cy, R, vel, sc);
     // Shell at v_max: three great circles
     const rs = vmax() * sc;
     ctx.strokeStyle = C.shell; ctx.lineWidth = 2; ctx.beginPath();
@@ -656,19 +683,20 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
     ctx.font = 'italic 11px ' + C.serif; ctx.fillText('max', 8 + wv + 1, 26);
   }
 
-  const vTop = 1600, nb = 40, bw = vTop / nb;
+  const vTop = 1600, nb = 40, bw = vTop / nb, counts = new Uint16Array(nb);
+  let lastOver = -1;
   function drawHist() {
     const { ctx, w } = views[2]; ctx.clearRect(0, 0, w, w);
     const L = 30, Rm = 12, Tp = 28, B = w - 46, W = w - L - Rm, H = B - Tp;
-    const counts = new Array(nb).fill(0);
+    counts.fill(0); let over = 0;
     for (let i = 0; i < N; i++) {
-      const sp = Math.hypot(vel[3*i], vel[3*i+1], vel[3*i+2]);
-      const b = Math.floor(sp / bw); if (b < nb) counts[b]++;
+      const b = Math.floor(speed[i] / bw); if (b < nb) counts[b]++; else over++;
     }
     const a = m / (2 * kB * T), norm = 4 * Math.PI * Math.pow(a / Math.PI, 1.5);
     const D = v => norm * v * v * Math.exp(-a * v * v) * N * bw;
     const peak = D(vmax());
-    const ymax = Math.max(peak * 1.3, Math.max(...counts) * 1.08);
+    let cmax = 0; for (let b = 0; b < nb; b++) if (counts[b] > cmax) cmax = counts[b];
+    const ymax = Math.max(peak * 1.3, cmax * 1.08);
     const X = v => L + v / vTop * W, Y = c => B - c / ymax * H;
     ctx.fillStyle = C.slow; ctx.strokeStyle = C.slow; ctx.lineWidth = 1;
     for (let b = 0; b < nb; b++) {
@@ -689,20 +717,36 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
     ctx.fillStyle = C.ink; ctx.font = 'italic 15px ' + C.serif; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     const lx = Math.min(X(vmax()) + 14, L + W - 130);
     ctx.fillText('Maxwell, T = ' + T + ' K', lx, Y(peak) - 6);
+    // Atoms beyond the axis are not dropped silently
+    const overTxt = '> ' + vTop + ' m/s: ' + over + ' (' + (100 * over / N).toFixed(1) + '%)';
+    ctx.fillStyle = C.muted; ctx.font = '12px ' + C.serif; ctx.textAlign = 'right'; ctx.textBaseline = 'top';
+    ctx.fillText(overTxt, L + W, 4);
+    if (over !== lastOver) {
+      lastOver = over;
+      views[2].c.setAttribute('aria-label', 'Histogram of atomic speeds compared with the Maxwell speed distribution at ' + T +
+        ' K; ' + over + ' of ' + N + ' atoms are faster than ' + vTop + ' m/s and lie beyond the axis');
+    }
   }
 
   function draw() { if (!C.slow || !boxSprites) return; drawBox(); drawVel(); drawHist(); }
 
   // ---------- dynamics ----------
   const posScale = 1.2e-3;  // box units per (m/s · s)
+  const COLL_RATE = 720;    // collision attempts per simulated second (12 per frame at 60 fps, as before)
+  const COLL_MAX = 64;      // per-step cap, O(1) << N
+  let collBudget = 0;
   function step(dt) {
     for (let i = 0; i < 3 * N; i++) {
       pos[i] += vel[i] * dt * posScale;
       if (pos[i] > 1) { pos[i] = 2 - pos[i]; vel[i] = -vel[i]; }
       else if (pos[i] < -1) { pos[i] = -2 - pos[i]; vel[i] = -vel[i]; }
     }
-    // A few random elastic collisions keep the distribution alive (energy and momentum conserved)
-    for (let k = 0; k < 12; k++) {
+    // Random-pair elastic velocity exchanges (not contact detection) keep the distribution alive;
+    // energy and momentum are conserved. The number of attempts follows simulated time, not the frame rate.
+    collBudget += COLL_RATE * dt;
+    const nColl = Math.min(COLL_MAX, Math.floor(collBudget));
+    collBudget = Math.min(collBudget - nColl, COLL_MAX);   // no unbounded catch-up
+    for (let k = 0; k < nColl; k++) {
       const i = (Math.random() * N) | 0, j = (Math.random() * N) | 0; if (i === j) continue;
       const cx = (vel[3*i] + vel[3*j]) / 2, cy = (vel[3*i+1] + vel[3*j+1]) / 2, cz = (vel[3*i+2] + vel[3*j+2]) / 2;
       const u = Math.hypot(vel[3*i] - vel[3*j], vel[3*i+1] - vel[3*j+1], vel[3*i+2] - vel[3*j+2]) / 2;
@@ -710,39 +754,85 @@ button.theme-btn svg{width:20px; height:20px; fill:none; stroke:currentColor; st
       const nx = st * Math.cos(ph) * u, ny = st * Math.sin(ph) * u, nz = ct * u;
       vel[3*i] = cx + nx; vel[3*i+1] = cy + ny; vel[3*i+2] = cz + nz;
       vel[3*j] = cx - nx; vel[3*j+1] = cy - ny; vel[3*j+2] = cz - nz;
+      speed[i] = speedOf(i); speed[j] = speedOf(j);
     }
   }
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let running = !reduceMotion, dragging = false, last = performance.now();
+  // Play/pause intent is separate from visibility; the RAF loop only runs while both allow it.
+  const motionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let running = !motionMQ.matches, autoPaused = motionMQ.matches;  // autoPaused: paused because of the OS setting
+  let onScreen = true, rafId = 0, last = null, drag = null;
   const toggle = document.getElementById('toggle');
-  toggle.textContent = running ? 'Pause' : 'Play';
-  toggle.addEventListener('click', () => { running = !running; toggle.textContent = running ? 'Pause' : 'Play'; });
-
-  function frame(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
-    if (running) { step(dt); if (!dragging) yaw += 0.12 * dt; draw(); }
-    requestAnimationFrame(frame);
+  const shouldRun = () => running && onScreen && !document.hidden;
+  function syncLoop() {
+    toggle.textContent = running ? 'Pause' : 'Play';
+    if (shouldRun()) { if (!rafId) { last = null; rafId = requestAnimationFrame(frame); } }
+    else if (rafId) { cancelAnimationFrame(rafId); rafId = 0; }
+  }
+  toggle.addEventListener('click', () => { running = !running; autoPaused = false; syncLoop(); });
+  // Rule: turning on "reduce motion" pauses; turning it off resumes only if that pause came from the setting,
+  // never overriding a pause the user chose.
+  motionMQ.addEventListener('change', e => {
+    if (e.matches) { if (running) { running = false; autoPaused = true; } }
+    else if (autoPaused) { running = true; autoPaused = false; }
+    syncLoop();
+  });
+  document.addEventListener('visibilitychange', syncLoop);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => { onScreen = es[es.length - 1].isIntersecting; syncLoop(); })
+      .observe(document.querySelector('.gas-figure'));
   }
 
-  // Dragging either 3D view rotates both
+  function frame(now) {
+    rafId = 0;
+    if (!shouldRun()) return;
+    const dt = last === null ? 0 : Math.min(0.05, (now - last) / 1000); last = now;
+    step(dt); if (!drag) setAngles(yaw + 0.12 * dt, pitch); draw();
+    rafId = requestAnimationFrame(frame);
+  }
+
+  // Dragging either 3D view rotates both. One drag at a time: the active canvas and pointerId are
+  // stored together, and events from any other pointer or canvas are ignored.
+  function endDrag(e) {
+    if (!drag || e.pointerId !== drag.id || e.currentTarget !== drag.c) return;
+    const c = drag.c; drag = null;
+    try { if (c.hasPointerCapture(e.pointerId)) c.releasePointerCapture(e.pointerId); } catch (err) {}
+  }
   document.querySelectorAll('canvas.rotatable').forEach(c => {
-    let px, py;
-    c.addEventListener('pointerdown', e => { dragging = true; px = e.clientX; py = e.clientY; c.setPointerCapture(e.pointerId); });
-    c.addEventListener('pointermove', e => {
-      if (!dragging) return;
-      yaw += (e.clientX - px) * 0.01;
-      pitch = Math.max(-1.4, Math.min(1.4, pitch + (e.clientY - py) * 0.01));
-      px = e.clientX; py = e.clientY; draw();
+    c.addEventListener('pointerdown', e => {
+      if (drag || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      drag = { c, id: e.pointerId, x: e.clientX, y: e.clientY };
+      try { c.setPointerCapture(e.pointerId); } catch (err) {}
     });
-    const end = () => { dragging = false; };
-    c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
+    c.addEventListener('pointermove', e => {
+      if (!drag || drag.c !== c || e.pointerId !== drag.id) return;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (!Number.isFinite(dx) || !Number.isFinite(dy)) return;
+      drag.x = e.clientX; drag.y = e.clientY;
+      setAngles(yaw + dx * 0.01, pitch + dy * 0.01); draw();
+    });
+    c.addEventListener('pointerup', endDrag);
+    c.addEventListener('pointercancel', endDrag);
+    c.addEventListener('lostpointercapture', endDrag);
+    // Keyboard equivalent: arrows rotate (Shift for larger steps), Home resets
+    c.addEventListener('keydown', e => {
+      const k = e.shiftKey ? 0.3 : 0.08;
+      if (e.key === 'ArrowLeft') setAngles(yaw - k, pitch);
+      else if (e.key === 'ArrowRight') setAngles(yaw + k, pitch);
+      else if (e.key === 'ArrowUp') setAngles(yaw, pitch - k);
+      else if (e.key === 'ArrowDown') setAngles(yaw, pitch + k);
+      else if (e.key === 'Home') setAngles(YAW0, PITCH0);
+      else return;
+      e.preventDefault(); draw();
+    });
   });
+  document.getElementById('resetView').addEventListener('click', () => { setAngles(YAW0, PITCH0); draw(); });
 
   const tempInput = document.getElementById('temp'), tempOut = document.getElementById('tempOut');
   tempInput.addEventListener('input', () => {
     const Tn = parseFloat(tempInput.value), f = Math.sqrt(Tn / T);
     for (let i = 0; i < 3 * N; i++) vel[i] *= f;
+    refreshSpeeds();
     T = Tn; tempOut.textContent = T + ' K'; draw();
   });
 
@@ -751,7 +841,7 @@ new MutationObserver(() => { readColors(); buildSprites(); draw(); }).observe(do
   readColors();
   new ResizeObserver(resize).observe(document.querySelector('.panels'));
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(draw);
-  requestAnimationFrame(frame);
+  syncLoop();
 })();
 </script>
 <script>
