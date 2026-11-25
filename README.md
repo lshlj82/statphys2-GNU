@@ -21,6 +21,7 @@ Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 | 4+ | Fermions and bosons on a ladder (supplement) | 등간격 사다리 위의 페르미온과 보손 (보충 자료) | [demo](https://lshlj82.github.io/FD-BE-from-isolated-systems/) · [한국어](https://lshlj82.github.io/FD-BE-from-isolated-systems/ko.html) · [source](https://github.com/lshlj82/FD-BE-from-isolated-systems) |
 | 5 | Degenerate Fermi gas | 축퇴 페르미 기체 | [demo](https://lshlj82.github.io/degenerate-fermi-gas/) · [source](https://github.com/lshlj82/degenerate-fermi-gas) |
 | 6 | Photon statistics | 광자 통계 | [demo](https://lshlj82.github.io/photon-statistics/) · [source](https://github.com/lshlj82/photon-statistics) |
+| 6′ | Electrons and photons | 전자와 광자 | [demo](https://lshlj82.github.io/electron-vs-photon/) · [source](https://github.com/lshlj82/electron-vs-photon) |
 | 7 | Debye theory of solids | 고체의 디바이 이론 | [demo](https://lshlj82.github.io/Debye-theory/) · [source](https://github.com/lshlj82/Debye-theory) |
 | 8 | Bose–Einstein condensation | 보스–아인슈타인 응축 | [demo](https://lshlj82.github.io/BEC/) · [source](https://github.com/lshlj82/BEC) |
 | 9 | Ising model | 이징 모형 | [demo](https://lshlj82.github.io/Ising-model-basics/) · [source](https://github.com/lshlj82/Ising-model-basics) |
